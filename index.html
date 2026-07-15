@@ -92,7 +92,6 @@ main{max-width:720px;margin:0 auto;padding:32px 20px 64px}
   background:var(--surface);border:1px solid var(--border);
   border-radius:12px;overflow:hidden;
 }
-.ci{width:100px;min-width:100px;height:84px;object-fit:cover;display:block;flex-shrink:0;background:var(--surface2)}
 .cp{width:100px;min-width:100px;height:84px;background:var(--surface2);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:32px}
 .cp.empty{font-size:0}
 .cb{flex:1;padding:10px 14px;min-width:0}
@@ -157,34 +156,14 @@ main{max-width:720px;margin:0 auto;padding:32px 20px 64px}
 // ── CONFIG ──────────────────────────────────────────────
 const JSON_URL = 'training-plan.json';
 
-// Tags that map to a photo from Unsplash
-const IMG_MAP = {
-  Peito:    '1534438327276-14e5300c3a48',
-  Tríceps:  '1541534741688-6078c6bfb5c5',
-  Costas:   '1548690312-e3b507d8c110',
-  Bíceps:   '1534258936925-c58bed479fcb',
-  Core:     '1571019613454-1cb2f99b2d8b',
-  Ombro:    '1605296867304-46d5465a13f1',
-  Mobilidade:'1544216717-3bbf52512659',
-  Lombar:   '1544216717-3bbf52512659',
-};
 
-// Tags that indicate a lower-body exercise → show 🦵
-const LEG_TAGS = ['Glúteo','Quadríceps','Posterior','Adutores','Flexora','Extensora','Panturrilha','Sóleo','Gastrocnêmio'];
 
 // ── HELPERS ─────────────────────────────────────────────
 const $ = id => document.getElementById(id);
 function save(k,v){ try{ localStorage.setItem(k,v) }catch(e){} }
 function load(k){   try{ return localStorage.getItem(k) }catch(e){ return null } }
 
-function isLeg(tags){ return tags.some(t => LEG_TAGS.some(l => t.includes(l))); }
 
-function getImg(tags){
-  for(const t of tags)
-    for(const k of Object.keys(IMG_MAP))
-      if(t.includes(k)) return `https://images.unsplash.com/photo-${IMG_MAP[k]}?w=200&h=120&fit=crop`;
-  return null;
-}
 
 function isWarmupGroup(g){
   const l = g.label.toLowerCase();
@@ -197,20 +176,7 @@ function mkCard(ex, isWarmup){
   const card = document.createElement('div'); card.className = 'ec';
   const tags = ex.tags.map(t => `<span class="tag">${t}</span>`).join('');
 
-  let imgHtml;
-  if(isWarmup){
-    // Warmup: plain dark square, no emoji, no photo
-    imgHtml = `<div class="cp empty"></div>`;
-  } else if(isLeg(ex.tags)){
-    imgHtml = `<div class="cp">🦵</div>`;
-  } else {
-    const img = getImg(ex.tags);
-    imgHtml = img
-      ? `<img class="ci" src="${img}" alt="${ex.name}" loading="lazy"
-             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-         <div class="cp">💪</div>`
-      : `<div class="cp">💪</div>`;
-  }
+  const imgHtml = `<div class="cp empty"></div>`;
 
   card.innerHTML = `
     ${imgHtml}
