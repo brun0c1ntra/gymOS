@@ -1,0 +1,178 @@
+{
+  "trainingPlans": {
+    "trainingSets": [
+      {
+        "level": 1,
+        "name": "Nível 1",
+        "workouts": [
+          {
+            "name": "Peito e Tríceps",
+            "groups": [
+              {
+                "type": "single",
+                "label": "Aquecimento / Ativação",
+                "exercises": [
+                  { "name": "Elevação de Quadril Deitado", "sets": 3, "repetitions": 15, "tags": ["Glúteo", "Core"] },
+                  { "name": "Bom Dia", "sets": 3, "repetitions": 15, "tags": ["Posterior", "Lombar"] },
+                  { "name": "Rabo de Escorpião", "sets": 3, "repetitions": 15, "tags": ["Glúteo", "Mobilidade"] }
+                ]
+              },
+              {
+                "type": "single",
+                "label": "Peito",
+                "exercises": [
+                  { "name": "Supino com Halteres", "sets": 3, "repetitions": 12, "tags": ["Peito", "Ombro", "Tríceps"] },
+                  { "name": "Flexão Aberta", "sets": 3, "repetitions": 12, "tags": ["Peito", "Peitoral Ext."] },
+                  { "name": "Crucifixo Inclinado com Halteres", "sets": 3, "repetitions": 12, "tags": ["Peitoral Sup.", "Halteres"] },
+                  { "name": "Pullover", "sets": 3, "repetitions": 12, "tags": ["Peitoral", "Costas"] }
+                ]
+              },
+              {
+                "type": "single",
+                "label": "Tríceps",
+                "exercises": [
+                  { "name": "Tríceps Corda na Polia", "sets": 3, "repetitions": 12, "tags": ["Tríceps", "Polia"] },
+                  { "name": "Tríceps no Banco", "sets": 3, "repetitions": 12, "tags": ["Tríceps", "Peso Corporal"] }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Inferiores",
+            "groups": [
+              {
+                "type": "single",
+                "label": "Aquecimento 3×15",
+                "exercises": [
+                  { "name": "4 na Caixa", "sets": 3, "repetitions": 15, "tags": ["Glúteo", "Equilíbrio"] },
+                  { "name": "Reverência na Caixa", "sets": 3, "repetitions": 15, "tags": ["Glúteo Médio", "Unilateral"] },
+                  { "name": "Joaquim", "sets": 3, "repetitions": 15, "tags": ["Ativação Glútea"] }
+                ]
+              },
+              { "type": "biset", "label": "Superset 1", "exercises": [
+                  { "name": "Cadeira Abdutora", "sets": 3, "repetitions": 12, "tags": ["Glúteo Médio", "Máquina"] },
+                  { "name": "Cadeira Adutora", "sets": 3, "repetitions": 12, "tags": ["Adutores", "Máquina"] }
+              ]},
+              { "type": "biset", "label": "Superset 2", "exercises": [
+                  { "name": "Agachamento Sumô", "sets": 3, "repetitions": 12, "tags": ["Glúteo", "Quadríceps", "5s descida"] },
+                  { "name": "Cadeira Flexora", "sets": 3, "repetitions": 12, "tags": ["Posterior", "Máquina"] }
+              ]},
+              { "type": "biset", "label": "Superset 3", "exercises": [
+                  { "name": "Avanço com Passadas", "sets": 3, "repetitions": 12, "tags": ["Quadríceps", "Glúteo"] },
+                  { "name": "Stiff", "sets": 3, "repetitions": 12, "tags": ["Posterior", "Glúteo"] }
+              ]},
+              { "type": "biset", "label": "Superset 4", "exercises": [
+                  { "name": "Cadeira Extensora", "sets": 3, "repetitions": 12, "tags": ["Quadríceps", "Máquina"] },
+                  { "name": "Agachamento Búlgaro", "sets": 3, "repetitions": 12, "tags": ["Unilateral", "Quadríceps"] }
+              ]},
+              { "type": "biset", "label": "Superset 5", "exercises": [
+                  { "name": "Abd Borboleta", "sets": 3, "repetitions": 12, "tags": ["Core", "Abdominais"] },
+                  { "name": "Prancha Toca Ombro", "sets": 3, "repetitions": 12, "tags": ["Core", "Estabilização"] }
+              ]}
+            ]
+          },
+          {
+            "name": "Costas",
+            "groups": [
+              {
+                "type": "single",
+                "label": "Aquecimento & Ativação",
+                "exercises": [
+                  { "name": "Superman", "sets": 3, "repetitions": 12, "tags": ["Lombar", "Core"] },
+                  { "name": "Vela", "sets": 3, "repetitions": 12, "tags": ["Mobilidade", "Coluna"] },
+                  { "name": "Rabo de Escorpião", "sets": 3, "repetitions": 12, "tags": ["Glúteo", "Mobilidade"] }
+                ]
+              },
+              { "type": "biset", "label": "Superset 1", "exercises": [
+                  { "name": "Puxada Frente", "sets": 3, "repetitions": 12, "tags": ["Costas", "Bíceps", "Polia"] },
+                  { "name": "Rosca Martelo", "sets": 3, "repetitions": 12, "tags": ["Bíceps", "Braquial"] }
+              ]},
+              { "type": "biset", "label": "Superset 2", "exercises": [
+                  { "name": "Crucifixo Invertido com Halteres", "sets": 3, "repetitions": 12, "tags": ["Deltóide Post.", "Romboides"] },
+                  { "name": "Pull Down", "sets": 3, "repetitions": 12, "tags": ["Costas", "Polia"] }
+              ]},
+              { "type": "biset", "label": "Superset 3", "exercises": [
+                  { "name": "Remada Baixa", "sets": 3, "repetitions": 12, "tags": ["Costas Média", "Polia"] },
+                  { "name": "Face Pull", "sets": 3, "repetitions": 12, "tags": ["Deltóide Post.", "Rotador"] }
+              ]},
+              { "type": "biset", "label": "Superset 4", "exercises": [
+                  { "name": "Panturrilha Sentada", "sets": 3, "repetitions": 12, "tags": ["Gastrocnêmio", "Máquina"] },
+                  { "name": "Panturrilha no Smith", "sets": 3, "repetitions": 12, "tags": ["Sóleo", "Smith"] }
+              ]},
+              { "type": "biset", "label": "Superset 5", "exercises": [
+                  { "name": "Abdominal Crunch", "sets": 3, "repetitions": 12, "tags": ["Reto Abdominal", "Core"] },
+                  { "name": "Prancha Cotovelo / Mão", "sets": 3, "repetitions": 12, "tags": ["Core", "Isométrico"] }
+              ]}
+            ]
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "name": "Nível 2",
+        "workouts": [
+          {
+            "name": "Peito e Tríceps",
+            "groups": [
+              { "type": "triset", "label": "Triset 1 — Peito", "exercises": [
+                  { "name": "Supino", "sets": 3, "repetitions": 10, "tags": ["Peito", "Ombro", "Tríceps"] },
+                  { "name": "Crucifixo", "sets": 3, "repetitions": 15, "tags": ["Peito", "Halteres"] },
+                  { "name": "Flexão de Braços", "sets": 3, "repetitions": 20, "tags": ["Peito", "Peso Corporal"] }
+              ]},
+              { "type": "triset", "label": "Triset 2 — Tríceps", "exercises": [
+                  { "name": "Rosca Francesa Polia", "sets": 3, "repetitions": 10, "tags": ["Tríceps", "Polia"] },
+                  { "name": "Tríceps Corda", "sets": 3, "repetitions": 15, "tags": ["Tríceps", "Polia"] },
+                  { "name": "Tríceps Banco", "sets": 3, "repetitions": 20, "tags": ["Tríceps", "Peso Corporal"] }
+              ]},
+              { "type": "triset", "label": "Triset 3 — Quadríceps", "exercises": [
+                  { "name": "Agachamento Búlgaro", "sets": 3, "repetitions": 10, "tags": ["Quadríceps", "Glúteo", "Unilateral"] },
+                  { "name": "Cadeira Extensora", "sets": 3, "repetitions": 15, "tags": ["Quadríceps", "Máquina"] },
+                  { "name": "Retrocesso", "sets": 3, "repetitions": 20, "tags": ["Glúteo", "Quadríceps"] }
+              ]}
+            ]
+          },
+          {
+            "name": "Posterior e Glúteos",
+            "groups": [
+              { "type": "triset", "label": "Triset 1 — Glúteo", "exercises": [
+                  { "name": "Cadeira Abdutora", "sets": 3, "repetitions": 10, "tags": ["Glúteo Médio", "Máquina"] },
+                  { "name": "Sumô Descida Lenta", "sets": 3, "repetitions": 15, "tags": ["Glúteo", "Quadríceps", "Tempo"] },
+                  { "name": "Frog", "sets": 3, "repetitions": 20, "tags": ["Glúteo", "Mobilidade"] }
+              ]},
+              { "type": "triset", "label": "Triset 2 — Posterior", "exercises": [
+                  { "name": "Stiff", "sets": 3, "repetitions": 10, "tags": ["Posterior", "Glúteo"] },
+                  { "name": "Cadeira Flexora", "sets": 3, "repetitions": 15, "tags": ["Posterior", "Máquina"] },
+                  { "name": "Agachamento 90°", "sets": 3, "repetitions": 20, "tags": ["Quadríceps", "Glúteo"] }
+              ]},
+              { "type": "triset", "label": "Triset 3 — Abdominais", "exercises": [
+                  { "name": "ABD com Rolinho", "sets": 3, "repetitions": 10, "tags": ["Core", "Abdominais"] },
+                  { "name": "Remador", "sets": 3, "repetitions": 15, "tags": ["Core", "Abdominais"] },
+                  { "name": "Elevação de Pernas", "sets": 3, "repetitions": 20, "tags": ["Core", "Abdominais"] }
+              ]}
+            ]
+          },
+          {
+            "name": "Costas e Ombro",
+            "groups": [
+              { "type": "triset", "label": "Triset 1 — Costas", "exercises": [
+                  { "name": "Puxada Frente", "sets": 3, "repetitions": 10, "tags": ["Costas", "Bíceps", "Polia"] },
+                  { "name": "Remada Baixa", "sets": 3, "repetitions": 15, "tags": ["Costas Média", "Polia"] },
+                  { "name": "Crucifixo Invertido", "sets": 3, "repetitions": 20, "tags": ["Deltóide Post.", "Romboides"] }
+              ]},
+              { "type": "triset", "label": "Triset 2 — Costas", "exercises": [
+                  { "name": "Serrote", "sets": 3, "repetitions": 10, "tags": ["Costas", "Halteres"] },
+                  { "name": "Pulldown", "sets": 3, "repetitions": 15, "tags": ["Costas", "Polia"] },
+                  { "name": "Remada Curvada", "sets": 3, "repetitions": 20, "tags": ["Costas", "Barra"] }
+              ]},
+              { "type": "triset", "label": "Triset 3 — Ombro", "exercises": [
+                  { "name": "Elevação Lateral", "sets": 3, "repetitions": 10, "tags": ["Deltóide Lateral", "Halteres"] },
+                  { "name": "Elevação Frontal", "sets": 3, "repetitions": 10, "tags": ["Deltóide Frontal", "Halteres"] },
+                  { "name": "Desenvolvimento Halteres", "sets": 3, "repetitions": 15, "tags": ["Deltóide", "Halteres"] }
+              ]}
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

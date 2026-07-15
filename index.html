@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GymOS</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0e0e0e;
+  --surface:#161616;
+  --surface2:#1e1e1e;
+  --border:#2a2a2a;
+  --accent:#f97316;
+  --text:#f0ede8;
+  --muted:#888;
+  --superset:#1a2a1a;
+  --superset-border:#2d4a1a;
+  --triset:#1a1a2a;
+  --triset-border:#2d2d4a;
+  --warmup-bg:rgba(59,130,246,.05);
+  --warmup-border:rgba(59,130,246,.15);
+  --warmup-color:#60a5fa;
+}
+html,body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min-height:100vh}
+.app{padding-top:80px;min-height:100vh}
+
+/* ── HEADER ── */
+header{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(14,14,14,0.97);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+  height:80px;display:flex;align-items:center;padding:0 24px;gap:16px;
+}
+.logo{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:2px;color:var(--accent);flex-shrink:0}
+.logo span{color:var(--text)}
+.dv{width:1px;height:30px;background:var(--border);flex-shrink:0}
+.sel-group{display:flex;flex-direction:column;gap:3px;flex-shrink:0}
+.sel-lbl{font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted)}
+select{
+  appearance:none;background:var(--surface2);border:1px solid var(--border);
+  color:var(--text);font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:1.5px;
+  padding:5px 34px 5px 12px;border-radius:8px;cursor:pointer;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='11' viewBox='0 0 24 24' fill='none' stroke='%23f97316' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 10px center;
+  transition:border-color .2s;min-width:130px;
+}
+select:hover{border-color:var(--accent)}
+select:focus{outline:2px solid var(--accent);outline-offset:2px}
+select option{background:#1e1e1e;color:var(--text)}
+.badge{
+  margin-left:auto;background:var(--accent);color:#000;
+  font-family:'Bebas Neue',sans-serif;font-size:12px;letter-spacing:1.5px;
+  padding:4px 12px;border-radius:4px;flex-shrink:0;white-space:nowrap;
+}
+
+/* ── LOADING / ERROR ── */
+.state-msg{
+  text-align:center;padding:80px 20px;
+  font-size:14px;color:var(--muted);
+}
+.state-msg.error{color:#f87171}
+
+/* ── MAIN ── */
+main{max-width:720px;margin:0 auto;padding:32px 20px 64px}
+.wh{margin-bottom:32px}
+.wtitle{
+  font-family:'Bebas Neue',sans-serif;font-size:48px;letter-spacing:3px;
+  line-height:1;color:var(--accent);text-transform:uppercase;
+}
+.wsub{font-size:14px;color:var(--muted);margin-top:6px}
+.wlevel{
+  display:inline-block;font-size:10px;font-weight:700;letter-spacing:1.5px;
+  text-transform:uppercase;background:rgba(249,115,22,.12);
+  border:1px solid rgba(249,115,22,.3);color:var(--accent);
+  padding:2px 8px;border-radius:4px;margin-top:8px;
+}
+
+/* ── SECTION LABEL ── */
+.slbl{
+  font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  color:var(--accent);margin:28px 0 12px;display:flex;align-items:center;gap:10px;
+}
+.slbl::after{content:'';flex:1;height:1px;background:var(--border)}
+
+/* ── EXERCISE CARD ── */
+.ew{margin-bottom:8px}
+.ec{
+  display:flex;align-items:center;
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:12px;overflow:hidden;
+}
+.ci{width:100px;min-width:100px;height:84px;object-fit:cover;display:block;flex-shrink:0;background:var(--surface2)}
+.cp{width:100px;min-width:100px;height:84px;background:var(--surface2);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:32px}
+.cp.empty{font-size:0}
+.cb{flex:1;padding:10px 14px;min-width:0}
+.cn{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:1.2px;line-height:1.2;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cm{font-size:11px;color:var(--muted);margin-top:4px;display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.tag{background:var(--surface2);border:1px solid var(--border);color:var(--muted);font-size:10px;font-weight:600;letter-spacing:.8px;padding:2px 7px;border-radius:4px;text-transform:uppercase}
+.reps{font-size:12px;font-weight:700;color:var(--accent);padding-right:16px;flex-shrink:0;white-space:nowrap;margin-left:auto}
+
+/* ── BISET ── */
+.sg{background:var(--superset);border:1px solid var(--superset-border);border-radius:14px;padding:10px;margin-bottom:10px}
+.sgl{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#4ade80;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.sgl::before{content:'';width:4px;height:4px;background:#4ade80;border-radius:50%}
+.sg .ew{margin-bottom:6px}
+.sg .ew:last-child{margin-bottom:0}
+
+/* ── TRISET ── */
+.tg{background:var(--triset);border:1px solid var(--triset-border);border-radius:14px;padding:10px;margin-bottom:10px}
+.tgl{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#c084fc;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.tgl::before{content:'';width:4px;height:4px;background:#c084fc;border-radius:50%}
+.tg .ew{margin-bottom:6px}
+.tg .ew:last-child{margin-bottom:0}
+
+/* ── WARMUP ── */
+.ws{background:var(--warmup-bg);border:1px solid var(--warmup-border);border-radius:14px;padding:10px;margin-bottom:20px}
+.wsl{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--warmup-color);margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.wsl::before{content:'';width:4px;height:4px;background:var(--warmup-color);border-radius:50%}
+.ws .ec{border-color:var(--warmup-border)}
+
+/* ── FOOTER COUNT ── */
+.exercise-count{font-size:13px;color:var(--muted);margin-top:28px;text-align:center;font-weight:500}
+.exercise-count strong{color:var(--accent)}
+
+@media(max-width:480px){
+  .logo{font-size:20px}
+  .sel-lbl{display:none}
+  .wtitle{font-size:36px}
+  .ci,.cp{width:80px;min-width:80px;height:70px}
+  .cn{font-size:15px}
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <header>
+    <div class="logo">GYM<span>OS</span></div>
+    <div class="dv"></div>
+    <div class="sel-group">
+      <span class="sel-lbl">Nível</span>
+      <select id="levelSelect" aria-label="Selecionar nível"></select>
+    </div>
+    <div class="dv"></div>
+    <div class="sel-group">
+      <span class="sel-lbl">Treino</span>
+      <select id="workoutSelect" aria-label="Selecionar treino"></select>
+    </div>
+    <div class="badge" id="badge">—</div>
+  </header>
+  <main id="mc"></main>
+</div>
+
+<script>
+// ── CONFIG ──────────────────────────────────────────────
+const JSON_URL = 'training-plan.json';
+
+// Tags that map to a photo from Unsplash
+const IMG_MAP = {
+  Peito:    '1534438327276-14e5300c3a48',
+  Tríceps:  '1541534741688-6078c6bfb5c5',
+  Costas:   '1548690312-e3b507d8c110',
+  Bíceps:   '1534258936925-c58bed479fcb',
+  Core:     '1571019613454-1cb2f99b2d8b',
+  Ombro:    '1605296867304-46d5465a13f1',
+  Mobilidade:'1544216717-3bbf52512659',
+  Lombar:   '1544216717-3bbf52512659',
+};
+
+// Tags that indicate a lower-body exercise → show 🦵
+const LEG_TAGS = ['Glúteo','Quadríceps','Posterior','Adutores','Flexora','Extensora','Panturrilha','Sóleo','Gastrocnêmio'];
+
+// ── HELPERS ─────────────────────────────────────────────
+const $ = id => document.getElementById(id);
+function save(k,v){ try{ localStorage.setItem(k,v) }catch(e){} }
+function load(k){   try{ return localStorage.getItem(k) }catch(e){ return null } }
+
+function isLeg(tags){ return tags.some(t => LEG_TAGS.some(l => t.includes(l))); }
+
+function getImg(tags){
+  for(const t of tags)
+    for(const k of Object.keys(IMG_MAP))
+      if(t.includes(k)) return `https://images.unsplash.com/photo-${IMG_MAP[k]}?w=200&h=120&fit=crop`;
+  return null;
+}
+
+function isWarmupGroup(g){
+  const l = g.label.toLowerCase();
+  return l.includes('aquec') || l.includes('ativa');
+}
+
+// ── CARD BUILDER ────────────────────────────────────────
+function mkCard(ex, isWarmup){
+  const wr   = document.createElement('div'); wr.className = 'ew';
+  const card = document.createElement('div'); card.className = 'ec';
+  const tags = ex.tags.map(t => `<span class="tag">${t}</span>`).join('');
+
+  let imgHtml;
+  if(isWarmup){
+    // Warmup: plain dark square, no emoji, no photo
+    imgHtml = `<div class="cp empty"></div>`;
+  } else if(isLeg(ex.tags)){
+    imgHtml = `<div class="cp">🦵</div>`;
+  } else {
+    const img = getImg(ex.tags);
+    imgHtml = img
+      ? `<img class="ci" src="${img}" alt="${ex.name}" loading="lazy"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+         <div class="cp">💪</div>`
+      : `<div class="cp">💪</div>`;
+  }
+
+  card.innerHTML = `
+    ${imgHtml}
+    <div class="cb">
+      <div class="cn">${ex.name}</div>
+      <div class="cm">${tags}</div>
+    </div>
+    <span class="reps">${ex.sets}×${ex.repetitions}</span>
+  `;
+  wr.appendChild(card);
+  return wr;
+}
+
+// ── RENDER ──────────────────────────────────────────────
+function render(trainingSets){
+  const lvlIdx = parseInt($('levelSelect').value);
+  const wkIdx  = parseInt($('workoutSelect').value);
+  const ts = trainingSets[lvlIdx];
+  const wk = ts.workouts[wkIdx];
+  const mc = $('mc');
+  let n = 0;
+
+  $('badge').textContent = `${ts.name} · ${wk.name}`;
+
+  mc.innerHTML = `
+    <div class="wh">
+      <div class="wtitle">${wk.name.toUpperCase()}</div>
+      <div class="wsub">${ts.name} · ${wk.groups.length} grupos de exercícios</div>
+      <span class="wlevel">${ts.name.toUpperCase()}</span>
+    </div>
+  `;
+
+  wk.groups.forEach(g => {
+    const wu = isWarmupGroup(g);
+
+    if(g.type === 'single' && wu){
+      const d = document.createElement('div'); d.className = 'ws';
+      const l = document.createElement('div'); l.className = 'wsl'; l.textContent = g.label;
+      d.appendChild(l);
+      g.exercises.forEach(e => { d.appendChild(mkCard(e, true)); n++; });
+      mc.appendChild(d);
+
+    } else if(g.type === 'single'){
+      const l = document.createElement('div'); l.className = 'slbl'; l.textContent = g.label;
+      mc.appendChild(l);
+      g.exercises.forEach(e => { mc.appendChild(mkCard(e, false)); n++; });
+
+    } else if(g.type === 'biset'){
+      const d = document.createElement('div'); d.className = 'sg';
+      const l = document.createElement('div'); l.className = 'sgl'; l.textContent = g.label;
+      d.appendChild(l);
+      g.exercises.forEach(e => { d.appendChild(mkCard(e, false)); n++; });
+      mc.appendChild(d);
+
+    } else if(g.type === 'triset'){
+      const d = document.createElement('div'); d.className = 'tg';
+      const l = document.createElement('div'); l.className = 'tgl'; l.textContent = g.label;
+      d.appendChild(l);
+      g.exercises.forEach(e => { d.appendChild(mkCard(e, false)); n++; });
+      mc.appendChild(d);
+    }
+  });
+
+  const c = document.createElement('div'); c.className = 'exercise-count';
+  c.innerHTML = `<strong>${n}</strong> exercícios no treino de hoje`;
+  mc.appendChild(c);
+}
+
+// ── DROPDOWN POPULATION ─────────────────────────────────
+function populateWorkouts(trainingSets){
+  const lvlIdx = parseInt($('levelSelect').value);
+  const ts = trainingSets[lvlIdx];
+  $('workoutSelect').innerHTML = '';
+  ts.workouts.forEach((w, i) => {
+    const o = document.createElement('option'); o.value = i; o.textContent = w.name;
+    $('workoutSelect').appendChild(o);
+  });
+  const sw = load(`workout_lvl_${lvlIdx}`);
+  if(sw !== null && parseInt(sw) < ts.workouts.length) $('workoutSelect').value = sw;
+}
+
+function populateLevels(trainingSets){
+  $('levelSelect').innerHTML = '';
+  trainingSets.forEach((ts, i) => {
+    const o = document.createElement('option'); o.value = i; o.textContent = ts.name;
+    $('levelSelect').appendChild(o);
+  });
+  const sl = load('selectedLevel');
+  if(sl !== null && parseInt(sl) < trainingSets.length) $('levelSelect').value = sl;
+}
+
+// ── BOOT ────────────────────────────────────────────────
+function init(data){
+  const sets = data.trainingPlans.trainingSets;
+
+  populateLevels(sets);
+  populateWorkouts(sets);
+  render(sets);
+
+  $('levelSelect').addEventListener('change', () => {
+    save('selectedLevel', $('levelSelect').value);
+    populateWorkouts(sets);
+    save(`workout_lvl_${$('levelSelect').value}`, 0);
+    render(sets);
+  });
+
+  $('workoutSelect').addEventListener('change', () => {
+    save(`workout_lvl_${$('levelSelect').value}`, $('workoutSelect').value);
+    render(sets);
+  });
+}
+
+// Load JSON then boot
+fetch(JSON_URL)
+  .then(r => {
+    if(!r.ok) throw new Error(`HTTP ${r.status}`);
+    return r.json();
+  })
+  .then(init)
+  .catch(err => {
+    $('mc').innerHTML = `<div class="state-msg error">
+      ⚠️ Não foi possível carregar <code>${JSON_URL}</code><br>
+      <small>${err.message}</small>
+    </div>`;
+  });
+</script>
+</body>
+</html>
