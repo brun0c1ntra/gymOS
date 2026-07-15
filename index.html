@@ -26,26 +26,26 @@
 html,body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min-height:100vh}
 .app{padding-top:80px;min-height:100vh}
 
-/* ── HEADER ── */
 header{
   position:fixed;top:0;left:0;right:0;z-index:100;
   background:rgba(14,14,14,0.97);
   backdrop-filter:blur(12px);
   border-bottom:1px solid var(--border);
-  height:80px;display:flex;align-items:center;padding:0 24px;gap:16px;
+  min-height:80px;display:flex;align-items:center;padding:0 16px;gap:10px;
+  flex-wrap:wrap;
 }
 .logo{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:2px;color:var(--accent);flex-shrink:0}
 .logo span{color:var(--text)}
 .dv{width:1px;height:30px;background:var(--border);flex-shrink:0}
-.sel-group{display:flex;flex-direction:column;gap:3px;flex-shrink:0}
+.sel-group{display:flex;flex-direction:column;gap:3px;flex-shrink:1;min-width:0}
 .sel-lbl{font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted)}
 select{
   appearance:none;background:var(--surface2);border:1px solid var(--border);
-  color:var(--text);font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:1.5px;
-  padding:5px 34px 5px 12px;border-radius:8px;cursor:pointer;
+  color:var(--text);font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:1px;
+  padding:5px 28px 5px 10px;border-radius:8px;cursor:pointer;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='11' viewBox='0 0 24 24' fill='none' stroke='%23f97316' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
-  background-repeat:no-repeat;background-position:right 10px center;
-  transition:border-color .2s;min-width:130px;
+  background-repeat:no-repeat;background-position:right 8px center;
+  transition:border-color .2s;min-width:0;width:100%;max-width:160px;
 }
 select:hover{border-color:var(--accent)}
 select:focus{outline:2px solid var(--accent);outline-offset:2px}
@@ -124,10 +124,14 @@ main{max-width:720px;margin:0 auto;padding:32px 20px 64px}
 .exercise-count strong{color:var(--accent)}
 
 @media(max-width:480px){
+  .app{padding-top:64px}
+  header{min-height:64px;padding:0 12px;gap:8px}
   .logo{font-size:20px}
   .sel-lbl{display:none}
+  .dv{display:none}
+  select{font-size:13px;max-width:120px}
+  .badge{display:none}
   .wtitle{font-size:36px}
-  .ci,.cp{width:80px;min-width:80px;height:70px}
   .cn{font-size:15px}
 }
 </style>
